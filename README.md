@@ -24,3 +24,6 @@ Output: To^i te^n la\` Ngo^ Chi' Du~ng. Ngu+o+\`i d-a~ ta.o ra ca'i pha^\`n me^\
 
 Whereas $input = a unicode string
 
+## LICENSE
+The MIT License (MIT)
+

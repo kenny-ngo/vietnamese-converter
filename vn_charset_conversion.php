@@ -1,6 +1,9 @@
 <?php
 /**
  * Vietnamese Character Encode / Decoding
+ * name: vn_charset_conversion.php
+ * by  : Kenny Ngo
+ * Date: 04/24/2016
  */
 
 class vn_charset_conversion {
