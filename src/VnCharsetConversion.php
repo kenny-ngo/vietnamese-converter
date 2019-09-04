@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vietnamese Character Encode / Decoding
  * name: vn_charset_conversion.php
@@ -6,9 +7,14 @@
  * Date: 04/24/2016
  */
 
-class vn_charset_conversion {
-   private $charmap = Array(
-      'unicode' => Array(
+namespace Kenny\VietnameseConverter;
+
+class VnCharsetConversion
+{
+   private $input;
+
+   private $charmap = [
+      'unicode' => [
          'ạ','ã','ả','á','à',
          'Ạ','Ã','Ả','Á','À',
          'ặ','ẵ','ẳ','ắ','ằ','ă',
@@ -34,8 +40,8 @@ class vn_charset_conversion {
          'Ự','Ữ','Ử','Ứ','Ừ','Ư',
          'ỵ','ỹ','ỷ','ý','ỳ',
          'Ỵ','Ỹ','Ỷ','Ý','Ỳ'
-      ),
-      'virq' => Array(
+      ],
+      'virq' => [
          'a.','a~','a?',"a'",'a`',
          'A.','A~','A?',"A'",'A`',
          'a(.','a(~','a(?',"a('",'a(`','a(',
@@ -61,8 +67,8 @@ class vn_charset_conversion {
          'U+.','U+~',"U+?","U+'",'U+`','U+',
          'y.','y~',"y?","y'",'y`',
          'Y.','Y~',"Y?","Y'",'Y`'
-      ),
-      'vnet' => Array(
+      ],
+      'vnet' => [
          'aò','aÞ','aÒ','aì','aÌ',
          'Aò','AÞ','AÒ','Aì','AÌ',
          'ãò','ãÞ','ãÒ','ãì','ãÌ','ã',
@@ -88,8 +94,8 @@ class vn_charset_conversion {
          'Ýò','ÝÞ','ÝÒ','Ýì','ÝÌ','Ý',
          'yò','yÞ','yÒ','yì','yÌ',
          'Yò','YÞ','YÒ','Yì','YÌ'
-      ),
-      'vni' => Array(
+      ],
+      'vni' => [
          'aï','aõ','aû','aù','aø',
          'AÏ','AÕ','AÛ','AÙ','AØ',
          'aë','aü','aú','aé','aè','aê',
@@ -115,8 +121,8 @@ class vn_charset_conversion {
          'ÖÏ','ÖÕ','ÖÛ','ÖÙ','ÖØ','Ö',
          'î','yõ','yû','yù','yø',
          'Î','YÕ','YÛ','YÙ','YØ'
-      ),
-      'ascii' => Array(
+      ],
+      'ascii' => [
          'a','a','a','a','a',
          'A','A','A','A','A',
          'a','a','a','a','a','a',
@@ -142,57 +148,80 @@ class vn_charset_conversion {
          'U','U','U','U','U','U',
          'y','y','y','y','y',
          'Y','Y','Y','Y','Y'
-      )
-   );
-   private $input;
-   function __construct($input = NULL) {
+      ]
+   ];
+
+   public function __construct($input = null)
+   {
       $this->input = $input;
    }
-   function __destruct() {}
-   function convert($input = NULL, $from = 'unicode', $to = 'ascii'){
-      if($input == NULL){
+
+   public function convert($input = null, $from = 'unicode', $to = 'ascii')
+   {
+      if ($input == null) {
          $input = $this->input;
       }
-      $map = array();
-      foreach($this->charmap[$from] as $key=>$value){
+
+      $map = [];
+      foreach ($this->charmap[$from] as $key => $value) {
          $map[$value] = $this->charmap[$to][$key];
       }
-      if($to == 'unicode' || $to == 'ascii') {
-         $input = str_replace(
-            array("I'M","I'm","'ve","'ll","n't","'VE","'LL","N'T","'RE","'re"),
-            array("I___M", "I___m","___ve","___ll","n___t","___VE","___LL","N___T","___RE","___re"),
-            $input
-         );
-         $input = strtr($input,$map);
-         $input = str_replace('___', "'", $input );
+
+      if ($to == 'unicode' || $to == 'ascii') {
+         $input = str_replace(["I'M", "I'm", "'ve", "'ll", "n't", "'VE", "'LL", "N'T", "'RE", "'re"], [
+                 "I___M",
+                 "I___m",
+                 "___ve",
+                 "___ll",
+                 "n___t",
+                 "___VE",
+                 "___LL",
+                 "N___T",
+                 "___RE",
+                 "___re",
+             ], $input);
+         $input = strtr($input, $map);
+         $input = str_replace('___', "'", $input);
 
          return $input;
       }
-      return $input = strtr($input,$map);
+
+      return $input = strtr($input, $map);
    }
-   function tolower() {
-      $buffers = $this->convert('unicode','virq');
+
+   public function tolower()
+   {
+      $buffers = $this->convert('unicode', 'virq');
       $buffers = strtolower($buffers);
-      $buffers = $this->convert('virq','unicode',$buffers);
+      $buffers = $this->convert('virq', 'unicode', $buffers);
+
       return $buffers;
    }
-   function toupper(){
-      $buffers = $this->convert('unicode','virq');
+
+   public function toupper()
+   {
+      $buffers = $this->convert('unicode', 'virq');
       $buffers = strtoupper($buffers);
-      $buffers = $this->convert('virq','unicode',$buffers);
+      $buffers = $this->convert('virq', 'unicode', $buffers);
+
       return $buffers;
    }
-   function ucfirst() {
-      $buffers = $this->convert('unicode','virq');
+
+   public function ucfirst()
+   {
+      $buffers = $this->convert('unicode', 'virq');
       $buffers = ucfirst(strtolower($buffers));
-      $buffers = $this->convert('virq','unicode',$buffers);
+      $buffers = $this->convert('virq', 'unicode', $buffers);
+
       return $buffers;
    }
-   function ucwords(){
-      $buffers = $this->convert('unicode','virq');
+
+   public function ucwords()
+   {
+      $buffers = $this->convert('unicode', 'virq');
       $buffers = ucwords(strtolower($buffers));
-      $buffers = $this->convert('virq','unicode',$buffers);
+      $buffers = $this->convert('virq', 'unicode', $buffers);
+
       return $buffers;
    }
 }
-?>
