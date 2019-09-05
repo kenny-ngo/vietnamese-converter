@@ -7,7 +7,7 @@
  * Date: 04/24/2016.
  */
 
-namespace Kenny\VietnameseConverter;
+namespace Pnlinh\VietnameseConverter;
 
 class VnCharsetConversion
 {

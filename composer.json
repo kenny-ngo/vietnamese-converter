@@ -1,5 +1,5 @@
 {
-  "name": "kenny-ngo/vietnamese-converter",
+  "name": "pnlinh/vietnamese-converter",
   "description": "A php class that converts Vietnamese characters into different character set",
   "keywords": [
     "vietnamese-converter"
@@ -18,12 +18,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Kenny\\VietnameseConverter\\": "src/"
+      "Pnlinh\\VietnameseConverter\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Kenny\\VietnameseConverter\\Tests\\": "tests/"
+      "Pnlinh\\VietnameseConverter\\Tests\\": "tests/"
     }
   },
   "scripts": {
