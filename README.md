@@ -6,14 +6,14 @@
 Require this package with composer.
 
 ```bash
-composer require kenny-ngo/vietnamese-converter
+composer require pnlinh/vietnamese-converter
 ```
 
 ## Usage
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Kenny\VietnameseConverter\VnCharsetConversion;
+use Pnlinh\VietnameseConverter\VnCharsetConversion;
 
 $vniConversion = new VnCharsetConversion();
 $output = $vniConversion->convert('Tôi tên là Ngô Chí Dũng. Người đã tạo ra cái phần mềm này.');
