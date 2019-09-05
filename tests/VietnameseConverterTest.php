@@ -2,8 +2,8 @@
 
 namespace Kenny\VietnameseConverter\Tests;
 
-use Pnlinh\VietnameseConverter\VnCharsetConversion;
 use PHPUnit\Framework\TestCase;
+use Pnlinh\VietnameseConverter\VnCharsetConversion;
 
 class VietnameseConverterTest extends TestCase
 {
