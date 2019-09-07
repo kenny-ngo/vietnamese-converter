@@ -11,7 +11,7 @@ namespace Pnlinh\VietnameseConverter;
 
 class VnCharsetConversion
 {
-    private $input;
+    private $input = null;
 
     private $charmap = [
       'unicode' => [
@@ -151,9 +151,11 @@ class VnCharsetConversion
       ],
    ];
 
-    public function __construct($input = null)
+    public function setInput($input)
     {
         $this->input = $input;
+
+        return $this;
     }
 
     public function convert($input = null, $from = 'unicode', $to = 'ascii')
