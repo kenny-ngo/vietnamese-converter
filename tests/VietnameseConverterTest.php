@@ -3,10 +3,20 @@
 namespace Kenny\VietnameseConverter\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Pnlinh\VietnameseConverter\VietnameseConverter;
 use Pnlinh\VietnameseConverter\VnCharsetConversion;
 
 class VietnameseConverterTest extends TestCase
 {
+    /** @test */
+    public function can_create_vn_charset_conversion_from_vietnamese_converter_class()
+    {
+        $vniConversion = VietnameseConverter::make();
+
+        $this->assertNotNull($vniConversion);
+        $this->assertInstanceOf(VnCharsetConversion::class, $vniConversion);
+    }
+    
     /** @test */
     public function it_can_created()
     {
