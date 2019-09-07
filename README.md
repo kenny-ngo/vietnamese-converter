@@ -11,13 +11,16 @@ composer require pnlinh/vietnamese-converter
 
 ## Usage
 ```php
+<?php
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Pnlinh\VietnameseConverter\VnCharsetConversion;
+use Pnlinh\VietnameseConverter\VietnameseConverter;
 
-$vniConversion = new VnCharsetConversion();
-$output = $vniConversion->convert('Tôi tên là Ngô Chí Dũng. Người đã tạo ra cái phần mềm này.');
-echo $output // Toi ten la Ngo Chi Dung. Nguoi da tao ra cai phan mem nay.
+$output = VietnameseConverter::make()
+							   ->convert('Tôi tên là Ngô Chí Dũng. Người đã tạo ra cái phần mềm này.');
+
+echo $output; // Toi ten la Ngo Chi Dung. Nguoi da tao ra cai phan mem nay.
 ```
 
 ## Available Methods
@@ -30,9 +33,9 @@ echo $output // Toi ten la Ngo Chi Dung. Nguoi da tao ra cai phan mem nay.
 - tolower($input)
 - toupper($input)
 - ucfirst($input)
-- ucwords($input)
+- ucwords($input)  
 
-Where as $input = a unicode string
+$input is a unicode string
 ```
 
 ## Test
@@ -44,7 +47,7 @@ composer test
 ## Credits
 
 - [Kenny Ngo](https://github.com/kenny-ngo)
-- [Ngoc Linh Pham](https://github.com/pnlinh)  
+- [Ngoc Linh Pham](https://github.com/pnlinh)
 
 ## License
 The MIT License (MIT)
